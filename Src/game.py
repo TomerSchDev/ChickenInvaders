@@ -20,13 +20,19 @@ class __Game:
     """
 
     def __init__(self):
+
         self.__demesnes = []
         self.__renderAbles = []
         self.__moveAbles = []
         self.__seen = []
+        self.__shooters = []
         self.window: pygame.Surface = pygame.display.set_mode((WIDTH, HEIGHT))
         self.background = pygame.transform.scale(get_image("background"), (WIDTH, HEIGHT))
         self.window.blit(self.background, (0, 0))
+        self.__game_objects = [self.__demesnes, self.__renderAbles, self.__moveAbles, self.__seen, self.__shooters]
+
+    def add_shooter(self, shooter):
+        self.__shooters.append(shooter)
 
     def render(self):
         screen: pygame.Surface = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
@@ -42,7 +48,7 @@ class __Game:
 
     def check_hit(self):
         for d in self.__demesnes:
-            pos,damage = d.get_info()
+            pos, damage = d.get_info()
             for s in self.__seen:
                 if s.hit(pos):
                     s.collide(damage)
@@ -57,14 +63,9 @@ class __Game:
         self.__seen.append(d)
 
     def remove_from_game(self, o):
-        if o in self.__renderAbles:
-            self.__renderAbles.remove(o)
-        if o in self.__moveAbles:
-            self.__moveAbles.remove(o)
-        if o in self.__seen:
-            self.__seen.remove(o)
-        if o in self.__demesnes:
-            self.__demesnes.remove(o)
+        for arr in self.__game_objects:
+            if o in arr:
+                arr.remove(o)
 
     def add_to_damages(self, d):
         self.__demesnes.append(d)
@@ -91,10 +92,25 @@ class __Game:
                 player.move(keys)
                 if keys[pygame.K_SPACE]:
                     player.shoot(frame)
-            self.move()
-            self.check_hit()
-            self.render()
+            self.update(frame)
+
             if not self.check_if_in_game(player):
                 run_game = False
             frame += 1
             clock.tick(FPS)
+
+    def shot(self, frame):
+        for s in self.__shooters:
+            s.shot(self, frame)
+
+    def check_is_outside(self):
+        for d in self.__demesnes:
+            if d.going_outside():
+                self.remove_from_game(d)
+
+    def update(self, frame):
+        self.shot(frame)
+        self.move()
+        self.check_hit()
+        self.check_is_outside()
+        self.render()

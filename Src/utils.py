@@ -13,7 +13,8 @@ def get_image(image_name):
 def movement_func(func):
     def wrapper(obj, *args, **kwargs):
         x, y = obj.get_pos()
-        x, y = func(obj, x, y, *args, **kwargs)
+        speed = obj.get_speed()
+        x, y = func(x, y, speed, obj, *args, **kwargs)
         w, h = obj.get_size()
         x = max(min(WIDTH - w, x), 0)
         y = max(min(HEIGHT - h, y), 0)

@@ -15,9 +15,9 @@ def get_Movement(keys: tuple[bool]):
     DOWN = (Direction.DOWN, constants.K_DOWN, constants.K_s)
     RIGHT = (Direction.RIGHT, constants.K_RIGHT, constants.K_d)
     directions = [UP, LEFT, DOWN, RIGHT]
-    movement = [False] * 4
+    movement = {}
     for direction in directions:
         e, a, b = direction
         if keys[a] or keys[b]:
-            movement[e.value] = True
+            movement[e] = True
     return movement
