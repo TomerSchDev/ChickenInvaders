@@ -14,10 +14,7 @@ def get_game():
 
 
 class __Game:
-    """
-    screen - render level into
-    lives (?)
-    """
+
 
     def __init__(self):
 
