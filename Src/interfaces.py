@@ -1,18 +1,27 @@
-import abc
+from abc import ABC
 from typing import Optional
 import random
 
-from Src.CONST import HEIGHT, WIDTH
-from Src.movement import Direction
+from Src.CONST import *
 from pygame import Surface
 
 
-class i_Renderable(abc.ABC):
-    def __init__(self, game, img: Optional[Surface], pos: tuple[int, int], draw_func=None):
+class abs_interface(ABC):
+    def __init__(self):
+        if not hasattr(self, "_o_types"):
+            self._o_types = []
+
+    def get_i_types(self):
+        return self._o_types
+
+
+class i_Renderable(abs_interface):
+    def __init__(self, img: Optional[Surface], pos: tuple[int, int], draw_func=None):
         self._img: Surface = img
         self._pos: tuple[int, int] = pos
         self._draw_func = draw_func
-        game.add_render(self)
+        abs_interface.__init__(self)
+        self._o_types.append(Objects_Type.RENDER_ABLE)
 
     def get_pos(self):
         return self._pos
@@ -27,16 +36,17 @@ class i_Renderable(abc.ABC):
             self._draw_func(screen)
 
 
-class i_Shooter(abc.ABC):
-    def __init__(self, game, direction, shot_type, rnd_shot):
+class i_Shooter(abs_interface):
+    def __init__(self, direction, shot_type, rnd_shot):
+        abs_interface.__init__(self)
         self._shot_dir = direction
         self._shot = shot_type
         self._rnd_shot = rnd_shot
-        self._shots = []
-        game.add_shooter(self)
+        self._last_shot=-1
+        self._o_types.append(Objects_Type.SHOOTERS)
 
-    def shot(self, game, frame):
-        if not self._shot._can_shot(frame):
+    def shot(self, frame):
+        if not self._can_shot(frame):
             return
         chance = random.randint(0, 100)
         if chance < self._rnd_shot:
@@ -44,15 +54,17 @@ class i_Shooter(abc.ABC):
             w, h = self._size
             x += + w / 2
             y += (h + 5) if self._shot_dir == Direction.DOWN else -5
-            shot = self._shot(game, (x, y), frame, self._shot_dir)
-            self._shots.append(shot)
+            shot_type, shot_sub_type = self._shot
+            self._last_shot = frame
+            return shot_type, shot_sub_type, (x, y), frame, self._shot_dir
 
 
-class i_MoveAble(abc.ABC):
-    def __init__(self, game, func, speed):
+class i_MoveAble(abs_interface):
+    def __init__(self, func, speed):
+        abs_interface.__init__(self)
         self._move_func = func
-        game.add_move(self)
         self._speed = speed
+        self._o_types.append(Objects_Type.MOVE_ABLE)
 
     def move(self):
         self._move_func(self)
@@ -62,12 +74,13 @@ class i_MoveAble(abc.ABC):
 
 
 class i_Damages(i_MoveAble):
-    def __init__(self, game, move_func, speed, damage, pos, direction):
-        i_MoveAble.__init__(self, game, move_func, speed)
+    def __init__(self, move_func, speed, damage, pos, direction):
+        i_MoveAble.__init__(self, move_func, speed)
+        abs_interface.__init__(self)
         self._damage = damage
         self._pos = pos
         self._direction = direction
-        game.add_to_damages(self)
+        self._o_types.append(Objects_Type.DAMAGE_ABLE)
 
     def get_info(self):
         return self._pos, self._damage
@@ -86,13 +99,13 @@ class i_Damages(i_MoveAble):
         return False
 
 
-class i_Decidable(abc.ABC):
-    def __init__(self, game, pos, size, hp):
+class i_Detectable(abs_interface):
+    def __init__(self, pos, size, hp):
+        abs_interface.__init__(self)
         self._pos = pos
         self._size = size
         self._hp = hp
-        game.add_decidable(self)
-        self.game = game
+        self._o_types.append(Objects_Type.DETECT_ABLE)
 
     def hit(self, h_pos: tuple[int, int]) -> bool:
         x_h, y_h = h_pos
@@ -103,6 +116,5 @@ class i_Decidable(abc.ABC):
     def collide(self, damage):
         self._hp -= damage
         if self._hp <= 0:
-            self.game.remove_from_game(self)
             return True
         return False

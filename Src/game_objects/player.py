@@ -1,25 +1,23 @@
 from pygame import transform, Surface
 
-from Src.CONST import WIDTH, HEIGHT
-from Src.movement import get_Movement, Direction
-from Src.game_objects.shots import *
-from Src.utils import get_image, movement_func
-from Src.interfaces import i_Renderable, i_Decidable
+from Src.CONST import WIDTH, HEIGHT, Direction
+from Src.utils import get_image, movement_func, get_Movement, game_sign
+from Src.interfaces import i_Renderable, i_Detectable
 
 
-class Player(i_Renderable, i_Decidable):
-    def __init__(self, game, size):
-        self.game = game
+class Player(i_Renderable, i_Detectable):
+    def __init__(self, size):
         pos = (WIDTH // 2 - 50, HEIGHT - 150)
         self._img = transform.rotate(transform.scale(get_image("player_ship"), size), 90)
-        i_Renderable.__init__(self, game, self._img,
+        i_Renderable.__init__(self, self._img,
                               pos)
         self.__speed = 5
-        i_Decidable.__init__(self, game, pos, size, 3)
-        self.__shots: list[abs_Shot] = []
+        i_Detectable.__init__(self, pos, size, 3)
         self.__width = self._img.get_width()
-        self.__shot = NormalShoot
+        self.__shot = "Normal"
         self.__side = Direction.LEFT
+        self._cooldown=20
+        self._last_shot=-1
 
     def get_size(self):
         return self._size
@@ -43,11 +41,14 @@ class Player(i_Renderable, i_Decidable):
         return self.__side
 
     def shoot(self, frame):
-        if not self.__shot.can_shot(frame):
+        if not self.can_shot(frame):
             return
         x, y = self._pos
-        shot = self.__shot(self.game, (x + self.__width // 2, y - 5), frame, Direction.UP)
-        self.__shots.append(shot)
+        self._last_shot=frame
+        return "Shoot",self.__shot,(x + self.__width // 2, y - 5), Direction.UP
+
+    def can_shot(self, frame):
+        return frame - self._last_shot >= self._cooldown
 
 
 @movement_func

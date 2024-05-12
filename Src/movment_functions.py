@@ -1,4 +1,4 @@
-from Src.movement import Direction
+from Src.CONST import Direction
 from Src.utils import movement_func
 
 

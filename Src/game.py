@@ -1,7 +1,8 @@
 import pygame
 from Src.CONST import *
 from Src.game_objects.player import Player
-from Src.game_objects.chickens import *
+from Src.game_objects.factory import create_object
+from Src.utils import get_image
 
 __game = None
 
@@ -15,67 +16,52 @@ def get_game():
 
 class __Game:
 
-
     def __init__(self):
-
-        self.__demesnes = []
-        self.__renderAbles = []
-        self.__moveAbles = []
-        self.__seen = []
-        self.__shooters = []
         self.window: pygame.Surface = pygame.display.set_mode((WIDTH, HEIGHT))
         self.background = pygame.transform.scale(get_image("background"), (WIDTH, HEIGHT))
         self.window.blit(self.background, (0, 0))
-        self.__game_objects = [self.__demesnes, self.__renderAbles, self.__moveAbles, self.__seen, self.__shooters]
+        self.__game_objects = {obj: [] for obj in Objects_Type}
 
-    def add_shooter(self, shooter):
-        self.__shooters.append(shooter)
+    def init_level(self, lvl):
+        pass
 
     def render(self):
         screen: pygame.Surface = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
-        for r in self.__renderAbles:
+        for r in self.__game_objects[Objects_Type.RENDER_ABLE]:
             r.render(screen)
         self.window.blit(self.background, (0, 0))
         self.window.blit(screen, (0, 0))
         pygame.display.flip()
 
     def move(self):
-        for m in self.__moveAbles:
+        for m in self.__game_objects[Objects_Type.MOVE_ABLE]:
             m.move()
 
     def check_hit(self):
-        for d in self.__demesnes:
+        for d in self.__game_objects[Objects_Type.DAMAGE_ABLE]:
             pos, damage = d.get_info()
-            for s in self.__seen:
+            for s in self.__game_objects[Objects_Type.DETECT_ABLE]:
                 if s.hit(pos):
                     s.collide(damage)
 
-    def add_render(self, render):
-        self.__renderAbles.append(render)
-
-    def add_move(self, movable):
-        self.__moveAbles.append(movable)
-
-    def add_decidable(self, d):
-        self.__seen.append(d)
-
     def remove_from_game(self, o):
-        for arr in self.__game_objects:
+        for arr in self.__game_objects.values():
             if o in arr:
                 arr.remove(o)
 
-    def add_to_damages(self, d):
-        self.__demesnes.append(d)
-
     def check_if_in_game(self, obj):
-        return obj in self.__seen or obj in self.__moveAbles or obj in self.__renderAbles
+        for arr in self.__game_objects.values():
+            if obj in arr:
+                return True
+        return False
 
     def start(self):
         run_game = True
-        player = Player(self, (100, 100))
+        player = Player((100, 100))
+        self.__game_objects[Objects_Type.RENDER_ABLE].append(player)
         clock = pygame.time.Clock()
         frame = 0
-        Normal_Chicken(self, (200, 200))
+        create_object(self,"Chicken","Normal",(200, 200))
         while run_game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -88,22 +74,30 @@ class __Game:
                     debug = 1
                 player.move(keys)
                 if keys[pygame.K_SPACE]:
-                    player.shoot(frame)
+                    res=player.shoot(frame)
+                    if res:
+                        create_object(self,*res)
             self.update(frame)
-
             if not self.check_if_in_game(player):
                 run_game = False
             frame += 1
             clock.tick(FPS)
 
     def shot(self, frame):
-        for s in self.__shooters:
-            s.shot(self, frame)
+        for s in self.__game_objects[Objects_Type.SHOOTERS]:
+            res = s.shot(frame)
+            if res:
+                create_object(self,*res)
 
     def check_is_outside(self):
-        for d in self.__demesnes:
+        for d in self.__game_objects[Objects_Type.DAMAGE_ABLE]:
             if d.going_outside():
                 self.remove_from_game(d)
+
+    def add_to_game(self, obj):
+        obj_types = obj.get_i_types()
+        for t in obj_types:
+            self.__game_objects[t].append(obj)
 
     def update(self, frame):
         self.shot(frame)
