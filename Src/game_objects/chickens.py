@@ -2,7 +2,7 @@ from enum import Enum
 from typing import Optional
 
 from pygame import Surface, transform
-from Src.game_objects.egg import *
+from Src.game_objects.egg import abs_Egg, Normal_Egg
 from Src.utils import get_image
 from Src.CONST import Direction
 from Src.interfaces import i_Renderable, i_MoveAble, i_Detectable, i_Shooter
@@ -15,7 +15,7 @@ class ABS_Chicken(i_Renderable, i_MoveAble, i_Detectable, i_Shooter):
         self._size = img.get_size() if img else (0, 0)
         i_Renderable.__init__(self, img, pos)
         i_MoveAble.__init__(self, func_m, speed)
-        i_Detectable.__init__(self, pos, self._size, hp)
+        i_Detectable.__init__(self, pos, self._size, hp,abs_Egg)
         i_Shooter.__init__(self, dir, egg_type, rnd_shot)
 
 

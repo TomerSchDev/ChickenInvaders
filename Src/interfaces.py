@@ -42,7 +42,7 @@ class i_Shooter(abs_interface):
         self._shot_dir = direction
         self._shot = shot_type
         self._rnd_shot = rnd_shot
-        self._last_shot=-1
+        self._last_shot = -1
         self._o_types.append(Objects_Type.SHOOTERS)
 
     def shot(self, frame):
@@ -100,14 +100,16 @@ class i_Damages(i_MoveAble):
 
 
 class i_Detectable(abs_interface):
-    def __init__(self, pos, size, hp):
+    def __init__(self, pos, size, hp, immune):
         abs_interface.__init__(self)
         self._pos = pos
         self._size = size
         self._hp = hp
         self._o_types.append(Objects_Type.DETECT_ABLE)
+        self._immune = immune
 
-    def hit(self, h_pos: tuple[int, int]) -> bool:
+    def hit(self, h_pos: tuple[int, int], typ) -> bool:
+        if isinstance(typ, self._immune): return False
         x_h, y_h = h_pos
         x, y = self._pos
         w, h = self._size

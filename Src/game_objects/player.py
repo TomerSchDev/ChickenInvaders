@@ -1,8 +1,9 @@
 from pygame import transform, Surface
 
 from Src.CONST import WIDTH, HEIGHT, Direction
-from Src.utils import get_image, movement_func, get_Movement, game_sign
+from Src.utils import get_image, movement_func, get_Movement
 from Src.interfaces import i_Renderable, i_Detectable
+from Src.game_objects.shots import abs_Shot
 
 
 class Player(i_Renderable, i_Detectable):
@@ -12,7 +13,7 @@ class Player(i_Renderable, i_Detectable):
         i_Renderable.__init__(self, self._img,
                               pos)
         self.__speed = 5
-        i_Detectable.__init__(self, pos, size, 3)
+        i_Detectable.__init__(self, pos, size, 3,abs_Shot)
         self.__width = self._img.get_width()
         self.__shot = "Normal"
         self.__side = Direction.LEFT

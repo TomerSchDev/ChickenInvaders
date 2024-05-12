@@ -3,6 +3,7 @@ from Src.CONST import *
 from Src.game_objects.player import Player
 from Src.game_objects.factory import create_object
 from Src.utils import get_image
+from Src.level import abs_Level
 
 __game = None
 
@@ -21,9 +22,20 @@ class __Game:
         self.background = pygame.transform.scale(get_image("background"), (WIDTH, HEIGHT))
         self.window.blit(self.background, (0, 0))
         self.__game_objects = {obj: [] for obj in Objects_Type}
+        self.player = None
+        self.__lvl_loaded = False
 
-    def init_level(self, lvl):
-        pass
+    def create_player(self):
+        player = Player((100, 100))
+        self.__game_objects[Objects_Type.RENDER_ABLE].append(player)
+        self.__game_objects[Objects_Type.DETECT_ABLE].append(player)
+        self.player = player
+
+    def init_level(self, lvl: abs_Level):
+        self.create_player()
+        for c_i in lvl.chickens_info:
+            create_object(self, "Chicken", *c_i.get_info())
+        self.__lvl_loaded = True
 
     def render(self):
         screen: pygame.Surface = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
@@ -41,7 +53,7 @@ class __Game:
         for d in self.__game_objects[Objects_Type.DAMAGE_ABLE]:
             pos, damage = d.get_info()
             for s in self.__game_objects[Objects_Type.DETECT_ABLE]:
-                if not s.hit(pos):
+                if not s.hit(pos,d):
                     continue
                 if s.collide(damage):
                     self.remove_from_game(s)
@@ -58,13 +70,12 @@ class __Game:
         return False
 
     def start(self):
+        if not self.__lvl_loaded:
+            return
         run_game = True
-        player = Player((100, 100))
-        self.__game_objects[Objects_Type.RENDER_ABLE].append(player)
-        self.__game_objects[Objects_Type.DETECT_ABLE].append(player)
         clock = pygame.time.Clock()
         frame = 0
-        create_object(self,"Chicken","Normal",(200, 200))
+        create_object(self, "Chicken", "Normal", (200, 200))
         while run_game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -75,22 +86,23 @@ class __Game:
                     run_game = False
                 if keys[pygame.K_LALT]:
                     debug = 1
-                player.move(keys)
+                self.player.move(keys)
                 if keys[pygame.K_SPACE]:
-                    res=player.shoot(frame)
+                    res = self.player.shoot(frame)
                     if res:
-                        create_object(self,*res)
+                        create_object(self, *res)
             self.update(frame)
-            if not self.check_if_in_game(player):
+            if not self.check_if_in_game(self.player):
                 run_game = False
             frame += 1
             clock.tick(FPS)
+        self.unload_lvl()
 
     def shot(self, frame):
         for s in self.__game_objects[Objects_Type.SHOOTERS]:
             res = s.shot(frame)
             if res:
-                create_object(self,*res)
+                create_object(self, *res)
 
     def check_is_outside(self):
         for d in self.__game_objects[Objects_Type.DAMAGE_ABLE]:
@@ -108,3 +120,9 @@ class __Game:
         self.check_hit()
         self.check_is_outside()
         self.render()
+
+    def unload_lvl(self):
+        self.__lvl_loaded = False
+        for arr in self.__game_objects.values():
+            arr.clear()
+        self.player = None
