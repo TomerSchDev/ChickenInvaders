@@ -41,8 +41,10 @@ class __Game:
         for d in self.__game_objects[Objects_Type.DAMAGE_ABLE]:
             pos, damage = d.get_info()
             for s in self.__game_objects[Objects_Type.DETECT_ABLE]:
-                if s.hit(pos):
-                    s.collide(damage)
+                if not s.hit(pos):
+                    continue
+                if s.collide(damage):
+                    self.remove_from_game(s)
 
     def remove_from_game(self, o):
         for arr in self.__game_objects.values():
@@ -59,6 +61,7 @@ class __Game:
         run_game = True
         player = Player((100, 100))
         self.__game_objects[Objects_Type.RENDER_ABLE].append(player)
+        self.__game_objects[Objects_Type.DETECT_ABLE].append(player)
         clock = pygame.time.Clock()
         frame = 0
         create_object(self,"Chicken","Normal",(200, 200))
