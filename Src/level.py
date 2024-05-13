@@ -1,6 +1,6 @@
 from abc import ABC
 import random
-from Src.CONST import WIDTH, HEIGHT
+from Src.CONST import WIDTH, HEIGHT,Enemy_Typs
 
 
 class Chicken_Info:
@@ -18,13 +18,19 @@ class abs_Level(ABC):
 
 
 def create_chickens_demo(count) -> list[Chicken_Info]:
-    res =[]
+    res = []
     for _ in range(count):
-        x = random.randint(0, WIDTH - 100)
-        y = random.randint(0, HEIGHT - 100)
-        pos = (x,y)
-        res.append(Chicken_Info("Normal",pos))
+        x = random.randint(300, WIDTH - 300)
+        y = random.randint(300, HEIGHT - 300)
+        pos = (x, y)
+        res.append(Chicken_Info(Enemy_Typs.CIRCLE, pos))
     return res
+
+
+class test_level_circle(abs_Level):
+    def __init__(self):
+        chickens: list[Chicken_Info] = [Chicken_Info(Enemy_Typs.CIRCLE, (500, 400))]
+        super().__init__(chickens)
 
 
 class tmp_lvl(abs_Level):

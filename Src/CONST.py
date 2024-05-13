@@ -7,10 +7,10 @@ FPS = 60
 
 
 class Direction(Enum):
-    UP = 0
-    LEFT = 1
-    DOWN = 2
-    RIGHT = 3
+    UP = "Up"
+    LEFT = "Left"
+    DOWN = "Down"
+    RIGHT = "Right"
 
 
 class Objects_Type(Enum):
@@ -20,5 +20,27 @@ class Objects_Type(Enum):
     DETECT_ABLE = "detect"
     SHOOTERS = "shooter"
 
+
+PLAYER = "Player"
+
+
+class Enemy_Typs(Enum):
     def __str__(self):
-        return self.value
+        return self.value + " Chicken"
+
+    NORMAL = "Normal"
+    CIRCLE = "Circle"
+
+
+class Egg_Types(Enum):
+    def __str__(self):
+        return self.value + " Egg"
+
+    Normal = "Normal"
+
+
+class Shoot_Typs(Enum):
+    def __str__(self):
+        return self.value + " Shoot"
+
+    NORMAl = "Normal"

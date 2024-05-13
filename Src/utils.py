@@ -1,8 +1,9 @@
 import pygame
 from Src.CONST import WIDTH, HEIGHT, Direction
 from pygame import constants
+import math
 
-global __game
+
 
 
 def get_image(image_name):
@@ -38,10 +39,22 @@ def movement_func(func):
     return wrapper
 
 
-def game_sign(func):
-    def wrapper(game, obj_type, obj_sub_type, *args, **kwargs):
-        obj = func(obj_type, obj_sub_type, *args, **kwargs)
-        game.add_to_game(obj)
-        return obj
+def calculate_dis_to_endScreen(radios, center):
+    x, y = center
+    possibilities = [x, y, WIDTH - x, HEIGHT - y]
+    for p in possibilities:
+        radios = min(p, radios)
+    return radios
 
-    return wrapper
+
+def calculate_points(radius, speeed, center):
+    number_of_points = 6 * radius // (speeed * 3)
+    radius = calculate_dis_to_endScreen(radius, center)
+    angle_per_point = 360 / number_of_points
+    points = []
+    for index in range(number_of_points):
+        angle = math.radians(angle_per_point * index + 90)
+        x = math.floor(center[0] + (radius * math.cos(angle)))
+        y = math.floor(center[1] + (radius * math.sin(angle)))
+        points.append((x, y))
+    return points

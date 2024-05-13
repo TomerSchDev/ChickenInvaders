@@ -6,6 +6,7 @@ from Src.CONST import *
 from pygame import Surface
 
 
+
 class abs_interface(ABC):
     def __init__(self):
         if not hasattr(self, "_o_types"):
@@ -54,9 +55,9 @@ class i_Shooter(abs_interface):
             w, h = self._size
             x += + w / 2
             y += (h + 5) if self._shot_dir == Direction.DOWN else -5
-            shot_type, shot_sub_type = self._shot
+            shot_type = self._shot
             self._last_shot = frame
-            return shot_type, shot_sub_type, (x, y), frame, self._shot_dir
+            return shot_type, (x, y), frame, self._shot_dir
 
 
 class i_MoveAble(abs_interface):
@@ -68,6 +69,12 @@ class i_MoveAble(abs_interface):
 
     def move(self):
         self._move_func(self)
+
+    def point_inside(self, p):
+        px, py = p
+        x, y = self._pos
+        w, h = self._size
+        return x <= px <= x + w and y <= py <= y + h
 
     def get_speed(self):
         return self._speed

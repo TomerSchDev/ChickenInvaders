@@ -1,7 +1,7 @@
 import pygame
 from Src.CONST import *
-from Src.game_objects.player import Player
-from Src.game_objects.factory import create_object
+from Src.creatables.player import Player
+from Src.creatables.factory import create_object
 from Src.utils import get_image
 from Src.level import abs_Level
 
@@ -25,16 +25,10 @@ class __Game:
         self.player = None
         self.__lvl_loaded = False
 
-    def create_player(self):
-        player = Player((100, 100))
-        self.__game_objects[Objects_Type.RENDER_ABLE].append(player)
-        self.__game_objects[Objects_Type.DETECT_ABLE].append(player)
-        self.player = player
-
     def init_level(self, lvl: abs_Level):
-        self.create_player()
+        self.player = create_object(self,PLAYER,(100,100))
         for c_i in lvl.chickens_info:
-            create_object(self, "Chicken", *c_i.get_info())
+            create_object(self,*c_i.get_info())
         self.__lvl_loaded = True
 
     def render(self):
@@ -53,7 +47,7 @@ class __Game:
         for d in self.__game_objects[Objects_Type.DAMAGE_ABLE]:
             pos, damage = d.get_info()
             for s in self.__game_objects[Objects_Type.DETECT_ABLE]:
-                if not s.hit(pos,d):
+                if not s.hit(pos, d):
                     continue
                 if s.collide(damage):
                     self.remove_from_game(s)
@@ -75,7 +69,6 @@ class __Game:
         run_game = True
         clock = pygame.time.Clock()
         frame = 0
-        create_object(self, "Chicken", "Normal", (200, 200))
         while run_game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -90,7 +83,7 @@ class __Game:
                 if keys[pygame.K_SPACE]:
                     res = self.player.shoot(frame)
                     if res:
-                        create_object(self, *res)
+                        create_object(self,*res)
             self.update(frame)
             if not self.check_if_in_game(self.player):
                 run_game = False
@@ -102,7 +95,7 @@ class __Game:
         for s in self.__game_objects[Objects_Type.SHOOTERS]:
             res = s.shot(frame)
             if res:
-                create_object(self, *res)
+                create_object(self,*res)
 
     def check_is_outside(self):
         for d in self.__game_objects[Objects_Type.DAMAGE_ABLE]:

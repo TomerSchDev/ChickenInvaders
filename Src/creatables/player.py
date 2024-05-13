@@ -1,9 +1,9 @@
 from pygame import transform, Surface
 
-from Src.CONST import WIDTH, HEIGHT, Direction
+from Src.CONST import *
 from Src.utils import get_image, movement_func, get_Movement
 from Src.interfaces import i_Renderable, i_Detectable
-from Src.game_objects.shots import abs_Shot
+from Src.creatables.shots import abs_Shot
 
 
 class Player(i_Renderable, i_Detectable):
@@ -13,12 +13,12 @@ class Player(i_Renderable, i_Detectable):
         i_Renderable.__init__(self, self._img,
                               pos)
         self.__speed = 5
-        i_Detectable.__init__(self, pos, size, 3,abs_Shot)
+        i_Detectable.__init__(self, pos, size, 3, abs_Shot)
         self.__width = self._img.get_width()
-        self.__shot = "Normal"
+        self.__shot = Shoot_Typs.NORMAl
         self.__side = Direction.LEFT
-        self._cooldown=20
-        self._last_shot=-1
+        self._cooldown = 20
+        self._last_shot = -1
 
     def get_size(self):
         return self._size
@@ -45,8 +45,8 @@ class Player(i_Renderable, i_Detectable):
         if not self.can_shot(frame):
             return
         x, y = self._pos
-        self._last_shot=frame
-        return "Shoot",self.__shot,(x + self.__width // 2, y - 5), Direction.UP
+        self._last_shot = frame
+        return self.__shot, (x + self.__width // 2, y - 5), Direction.UP
 
     def can_shot(self, frame):
         return frame - self._last_shot >= self._cooldown
