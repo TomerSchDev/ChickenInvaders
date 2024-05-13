@@ -79,7 +79,6 @@ class __Game:
                     run_game = False
                 if keys[pygame.K_LALT]:
                     debug = 1
-                self.player.move(keys)
                 if keys[pygame.K_SPACE]:
                     res = self.player.shoot(frame)
                     if res:

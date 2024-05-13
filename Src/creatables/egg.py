@@ -14,12 +14,9 @@ class abs_Egg(i_Renderable, i_Damages):
     def __init__(self, pos: tuple[int, int], damage: int, draw_func, dire, func_move, speed: int,
                  size: tuple[int, int]):
         self._direction = dire
-        self._size: tuple[int, int] = size
         i_Renderable.__init__(self, None, pos, draw_func)
-        i_Damages.__init__(self, func_move, speed, damage, pos, dire)
+        i_Damages.__init__(self, func_move, speed, damage, pos, dire,size)
 
-    def get_size(self):
-        return self._size
 
     def get_direction(self):
         return self._direction

@@ -44,3 +44,6 @@ class Shoot_Typs(Enum):
         return self.value + " Shoot"
 
     NORMAl = "Normal"
+    ANGLE = "Angles"
+    THREE_ANGLE = "Three Angles"
+    FIVE_ANGE = "Five Angles"

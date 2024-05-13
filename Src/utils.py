@@ -4,8 +4,6 @@ from pygame import constants
 import math
 
 
-
-
 def get_image(image_name):
     IMAGES_DIR = "./Images/"
     image_path: str = IMAGES_DIR + image_name + ".png"
@@ -24,19 +22,6 @@ def get_Movement(keys: tuple[bool]):
         if keys[a] or keys[b]:
             movement[e] = True
     return movement
-
-
-def movement_func(func):
-    def wrapper(obj, *args, **kwargs):
-        x, y = obj.get_pos()
-        speed = obj.get_speed()
-        x, y = func(x, y, speed, obj, *args, **kwargs)
-        w, h = obj.get_size()
-        x = max(min(WIDTH - w, x), 0)
-        y = max(min(HEIGHT - h, y), 0)
-        obj.set_pos(x, y)
-
-    return wrapper
 
 
 def calculate_dis_to_endScreen(radios, center):
@@ -58,3 +43,18 @@ def calculate_points(radius, speeed, center):
         y = math.floor(center[1] + (radius * math.sin(angle)))
         points.append((x, y))
     return points
+
+
+def created_rays_in_angle(rays_count, direction):
+    rays = []
+    diff_angle = 180 // (rays_count + 1)
+    if direction == Direction.UP:
+        start_angle = 180
+    else:
+        start_angle = 0
+    for i in range(1, rays_count + 1):
+        r_angle = start_angle + diff_angle * i
+        print(r_angle)
+        angle = math.radians(r_angle)
+        rays.append(angle)
+    return rays

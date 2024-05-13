@@ -11,14 +11,10 @@ import random
 
 class ABS_Chicken(i_Renderable, i_MoveAble, i_Detectable, i_Shooter):
     def __init__(self, img: Optional[Surface], pos: tuple[int, int], hp: int, speed, func_m, dir, egg_type, rnd_shot):
-        self._size = img.get_size() if img else (0, 0)
         i_Renderable.__init__(self, img, pos)
-        i_MoveAble.__init__(self, func_m, speed)
+        i_MoveAble.__init__(self, func_m, speed,pos, img.get_size() if img else (0, 0))
         i_Detectable.__init__(self, pos, self._size, hp, abs_Egg)
         i_Shooter.__init__(self, dir, egg_type, rnd_shot)
-
-    def get_size(self):
-        return self._size
 
 
 class Normal_Chicken(ABS_Chicken):

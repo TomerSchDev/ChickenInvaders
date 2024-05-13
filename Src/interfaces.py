@@ -6,7 +6,6 @@ from Src.CONST import *
 from pygame import Surface
 
 
-
 class abs_interface(ABC):
     def __init__(self):
         if not hasattr(self, "_o_types"):
@@ -61,14 +60,22 @@ class i_Shooter(abs_interface):
 
 
 class i_MoveAble(abs_interface):
-    def __init__(self, func, speed):
+    def __init__(self, func, speed, pos, size):
         abs_interface.__init__(self)
         self._move_func = func
         self._speed = speed
+        self._pos = pos
+        self._size = size
         self._o_types.append(Objects_Type.MOVE_ABLE)
 
-    def move(self):
-        self._move_func(self)
+    def move(self, *args, **kwargs):
+        x, y = self.get_pos()
+        speed = self.get_speed()
+        xn, yn = self._move_func(x, y, speed, self, *args, **kwargs)
+        w, h = self.get_size()
+        xn = max(min(WIDTH - w, xn), 0)
+        yn = max(min(HEIGHT - h, yn), 0)
+        self.set_pos(xn, yn)
 
     def point_inside(self, p):
         px, py = p
@@ -79,11 +86,19 @@ class i_MoveAble(abs_interface):
     def get_speed(self):
         return self._speed
 
+    def get_pos(self):
+        return self._pos
+
+    def get_size(self):
+        return self._size
+
+    def set_pos(self, x, y):
+        self._pos = (x, y)
+
 
 class i_Damages(i_MoveAble):
-    def __init__(self, move_func, speed, damage, pos, direction):
-        i_MoveAble.__init__(self, move_func, speed)
-        abs_interface.__init__(self)
+    def __init__(self, move_func, speed, damage, pos, direction,size):
+        i_MoveAble.__init__(self, move_func, speed,pos,size)
         self._damage = damage
         self._pos = pos
         self._direction = direction

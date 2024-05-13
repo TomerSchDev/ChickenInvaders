@@ -1,10 +1,8 @@
 from Src.CONST import Direction
-from Src.utils import movement_func
 
 import math
 
 
-@movement_func
 def straight_line_movement(x, y, speed, obj):
     direction = obj.get_direction()
     if direction == Direction.UP:
@@ -18,7 +16,6 @@ def straight_line_movement(x, y, speed, obj):
     return x, y
 
 
-@movement_func
 def in_a_line(x, y, speed, obj):
     min_x, max_x, direction = obj.get_movement_info()
     if direction == Direction.RIGHT:
@@ -32,7 +29,6 @@ def in_a_line(x, y, speed, obj):
     return x, y
 
 
-@movement_func
 def in_a_circle(x, y, speed, obj):
     on_the_circle, points, index, radios, center = obj.get_on_circle()
     if obj.point_inside(points[index]):
@@ -54,3 +50,10 @@ def in_a_circle(x, y, speed, obj):
     if c_r - radios < 2:
         obj.set_on_circle()
     return n_x, y
+
+
+def rays_in_a_angle(x, y, speed, obj):
+    angle = obj.get_angle()
+    nx = math.floor(x + (speed * math.cos(angle)))
+    ny = math.floor(y + (speed * math.sin(angle)))
+    return nx, ny
