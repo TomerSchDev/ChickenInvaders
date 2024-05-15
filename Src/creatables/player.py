@@ -1,7 +1,7 @@
 from pygame import transform, key
 
 from Src.CONST import *
-from Src.utils import get_image, get_Movement
+from Src.utils import get_image, get_Movement, get_sound,play_music
 from Src.interfaces import i_Renderable, i_Detectable, i_MoveAble
 from Src.creatables.shots import abs_Shot
 
@@ -46,6 +46,9 @@ class Player(i_Renderable, i_Detectable, i_MoveAble):
 
     def get_side(self):
         return self.__side
+
+    def upgrade(self, new_Shot):
+        pass
 
     def shoot(self, frame):
         if not self.can_shot(frame):

@@ -24,11 +24,12 @@ class __Game:
         self.__game_objects = {obj: [] for obj in Objects_Type}
         self.player = None
         self.__lvl_loaded = False
+        pygame.mixer.init()
 
     def init_level(self, lvl: abs_Level):
-        self.player = create_object(self,PLAYER,(100,100))
+        self.player = create_object(self, PLAYER, (100, 100))
         for c_i in lvl.chickens_info:
-            create_object(self,*c_i.get_info())
+            create_object(self, *c_i.get_info())
         self.__lvl_loaded = True
 
     def render(self):
@@ -82,7 +83,7 @@ class __Game:
                 if keys[pygame.K_SPACE]:
                     res = self.player.shoot(frame)
                     if res:
-                        create_object(self,*res)
+                        create_object(self, *res)
             self.update(frame)
             if not self.check_if_in_game(self.player):
                 run_game = False
@@ -94,7 +95,7 @@ class __Game:
         for s in self.__game_objects[Objects_Type.SHOOTERS]:
             res = s.shot(frame)
             if res:
-                create_object(self,*res)
+                create_object(self, *res)
 
     def check_is_outside(self):
         for d in self.__game_objects[Objects_Type.DAMAGE_ABLE]:

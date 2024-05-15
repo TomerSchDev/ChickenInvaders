@@ -1,5 +1,5 @@
 from Src.CONST import Direction
-
+from Src.utils import get_angle_from_point
 import math
 
 
@@ -38,11 +38,11 @@ def in_a_circle(x, y, speed, obj):
     cx = x + w // 2
     cy = y + h // 2
     if on_the_circle:
-        px, py = points[index]
-        y_speed = min(speed, math.fabs(py - cy))
-        ny = (y + y_speed) if (py - cy) > 0 else (y - y_speed)
-        x_speed = min(speed, math.fabs(px - cx))
-        nx = (x + x_speed) if (px - cx) > 0 else (x - x_speed)
+        target = points[index]
+        base = (cx,cy)
+        angle_to_move_r = get_angle_from_point(base, target)
+        nx = math.floor(x + (speed * math.cos(angle_to_move_r)))
+        ny = math.floor(y + (speed * math.sin(angle_to_move_r)))
         return nx, ny
     c_x, c_y = center
     n_x = cx + speed

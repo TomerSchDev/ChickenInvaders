@@ -40,7 +40,7 @@ class Angle_Shoot(abs_Shot):
     __COOLDOWN = 40  # cool down of 40 frames between each frames
 
     def __init__(self, pos, dire, angle):
-        abs_Shot.__init__(self, pos, 2, self.draw, dire, rays_in_a_angle, 10, (20, 20))
+        abs_Shot.__init__(self, pos, 2, self.draw, dire, rays_in_a_angle, 10, (10,10))
         self.__angle = angle
 
     def get_angle(self):

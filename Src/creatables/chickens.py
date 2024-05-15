@@ -1,5 +1,6 @@
 from typing import Optional
 
+import pygame.draw
 from pygame import Surface, transform
 from Src.creatables.egg import abs_Egg, Normal_Egg
 from Src.utils import get_image, calculate_points
@@ -12,7 +13,7 @@ import random
 class ABS_Chicken(i_Renderable, i_MoveAble, i_Detectable, i_Shooter):
     def __init__(self, img: Optional[Surface], pos: tuple[int, int], hp: int, speed, func_m, dir, egg_type, rnd_shot):
         i_Renderable.__init__(self, img, pos)
-        i_MoveAble.__init__(self, func_m, speed,pos, img.get_size() if img else (0, 0))
+        i_MoveAble.__init__(self, func_m, speed, pos, img.get_size() if img else (0, 0))
         i_Detectable.__init__(self, pos, self._size, hp, abs_Egg)
         i_Shooter.__init__(self, dir, egg_type, rnd_shot)
 
@@ -41,7 +42,7 @@ class Normal_Chicken(ABS_Chicken):
 class Circle_Chicken(ABS_Chicken):
     def __init__(self, pos: tuple[int, int]):
         img = transform.scale(get_image("chicken"), (100, 100))
-        speeed = 2
+        speeed = 10
         super().__init__(img, pos, 2, speeed, in_a_circle, Direction.DOWN, Egg_Types.Normal, 5)
         self.__center = pos
         self.__radios = 200
@@ -58,7 +59,12 @@ class Circle_Chicken(ABS_Chicken):
             n_i -= len(self.__points)
         self.__index = n_i
         return n_i
-
+    """
+    def render(self, screen: Surface):
+        super().render(screen)
+        for p in self.__points:
+            pygame.draw.circle(screen, (255, 0, 255), p,10)
+    """
     def _can_shot(self, time):
         return time - self._last_shot >= Normal_Egg.get_cool_time()
 
