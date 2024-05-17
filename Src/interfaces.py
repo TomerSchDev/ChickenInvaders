@@ -97,15 +97,19 @@ class i_MoveAble(abs_interface):
 
 
 class i_Damages(i_MoveAble):
-    def __init__(self, move_func, speed, damage, pos, direction,size):
-        i_MoveAble.__init__(self, move_func, speed,pos,size)
+    def __init__(self, move_func, speed, damage, pos, direction, size, action_func):
+        i_MoveAble.__init__(self, move_func, speed, pos, size)
         self._damage = damage
         self._pos = pos
         self._direction = direction
         self._o_types.append(Objects_Type.DAMAGE_ABLE)
+        self._action_func = action_func
 
     def get_info(self):
         return self._pos, self._damage
+
+    def get_damage(self):
+        return self._damage
 
     def going_outside(self):
         x, y = self._pos
@@ -119,26 +123,37 @@ class i_Damages(i_MoveAble):
         if self._direction == Direction.UP and x >= WIDTH - w:
             return True
         return False
+    def get_direction(self):
+        return self._direction
+
+    def collide(self, obj):
+        return self._action_func(self, obj)
 
 
 class i_Detectable(abs_interface):
-    def __init__(self, pos, size, hp, immune):
+    def __init__(self, pos, size, hp, immune: list[i_Damages], drop_rate, drop):
         abs_interface.__init__(self)
         self._pos = pos
         self._size = size
         self._hp = hp
         self._o_types.append(Objects_Type.DETECT_ABLE)
-        self._immune = immune
+        self._immune: list[i_Damages] = immune
+        self._drop_rate = drop_rate
+        self._drop = drop
 
     def hit(self, h_pos: tuple[int, int], typ) -> bool:
-        if isinstance(typ, self._immune): return False
+        for im in self._immune:
+            if isinstance(typ, im): return False
         x_h, y_h = h_pos
         x, y = self._pos
         w, h = self._size
         return x <= x_h <= x + w and y <= y_h <= y + h
 
-    def collide(self, damage):
+    def add_damage(self, damage):
         self._hp -= damage
         if self._hp <= 0:
+            chance = random.randint(0, 100)
+            if chance <= self._drop_rate:
+                return self._drop()
             return True
         return False

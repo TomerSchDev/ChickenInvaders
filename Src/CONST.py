@@ -22,6 +22,7 @@ class Objects_Type(Enum):
 
 
 PLAYER = "Player"
+UPGRADE = "Upgrade"
 
 
 class Enemy_Typs(Enum):

@@ -19,7 +19,7 @@ class __Game:
 
     def __init__(self):
         self.window: pygame.Surface = pygame.display.set_mode((WIDTH, HEIGHT))
-        self.background = pygame.transform.scale(get_image("background"), (WIDTH, HEIGHT))
+        self.background = get_image("background", (WIDTH, HEIGHT))
         self.window.blit(self.background, (0, 0))
         self.__game_objects = {obj: [] for obj in Objects_Type}
         self.player = None
@@ -50,8 +50,13 @@ class __Game:
             for s in self.__game_objects[Objects_Type.DETECT_ABLE]:
                 if not s.hit(pos, d):
                     continue
-                if s.collide(damage):
-                    self.remove_from_game(s)
+                res = d.collide(s)
+                self.remove_from_game(d)
+                if res is False:
+                    continue
+                if res is not True:
+                    create_object(self, *res)
+                self.remove_from_game(s)
 
     def remove_from_game(self, o):
         for arr in self.__game_objects.values():

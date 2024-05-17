@@ -2,6 +2,7 @@ import pygame
 
 from Src.interfaces import i_Renderable, i_Damages
 from Src.movment_functions import straight_line_movement
+from Src.utils import add_damage
 
 
 def _update_frame(frame):
@@ -15,8 +16,7 @@ class abs_Egg(i_Renderable, i_Damages):
                  size: tuple[int, int]):
         self._direction = dire
         i_Renderable.__init__(self, None, pos, draw_func)
-        i_Damages.__init__(self, func_move, speed, damage, pos, dire,size)
-
+        i_Damages.__init__(self, func_move, speed, damage, pos, dire, size, add_damage)
 
     def get_direction(self):
         return self._direction

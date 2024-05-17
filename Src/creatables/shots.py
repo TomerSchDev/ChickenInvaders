@@ -1,5 +1,5 @@
 from Src.CONST import Shoot_Typs
-from Src.utils import created_rays_in_angle
+from Src.utils import created_rays_in_angle, add_damage
 from Src.interfaces import i_Renderable, i_Damages
 from Src.movment_functions import straight_line_movement, rays_in_a_angle
 import pygame
@@ -14,7 +14,7 @@ class abs_Shot(i_Renderable, i_Damages):
 
     def __init__(self, pos: tuple[int, int], damage: int, draw_func, dire, func_move, speed, size):
         i_Renderable.__init__(self, None, pos, draw_func)
-        i_Damages.__init__(self, func_move, speed, damage, pos, dire, size)
+        i_Damages.__init__(self, func_move, speed, damage, pos, dire, size, add_damage)
 
     def get_direction(self):
         return self._direction
@@ -40,7 +40,7 @@ class Angle_Shoot(abs_Shot):
     __COOLDOWN = 40  # cool down of 40 frames between each frames
 
     def __init__(self, pos, dire, angle):
-        abs_Shot.__init__(self, pos, 2, self.draw, dire, rays_in_a_angle, 10, (10,10))
+        abs_Shot.__init__(self, pos, 2, self.draw, dire, rays_in_a_angle, 10, (10, 10))
         self.__angle = angle
 
     def get_angle(self):

@@ -35,5 +35,5 @@ class test_level_circle(abs_Level):
 
 class tmp_lvl(abs_Level):
     def __init__(self):
-        chickens = create_chickens_demo(5)
+        chickens = create_chickens_demo(1)
         super().__init__(chickens)

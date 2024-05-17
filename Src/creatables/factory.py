@@ -3,7 +3,7 @@ from Src.creatables.player import Player
 from Src.creatables.shots import *
 from Src.creatables.egg import *
 from Src.utils import play_music, get_sound
-
+from Src.creatables.powerUp import PowerUp
 """
 Object dic
 
@@ -14,6 +14,7 @@ objects_dic = {
     Enemy_Typs.CIRCLE: Circle_Chicken,
     Egg_Types.Normal: Normal_Egg,
     PLAYER: Player,
+    UPGRADE:PowerUp,
     Shoot_Typs.NORMAl: (NormalShoot, get_sound("lazer_shot")),
     Shoot_Typs.ANGLE: (Angle_Shoot, get_sound("lazer_shot")),
     Shoot_Typs.THREE_ANGLE: [Three_Angle_Shoot],

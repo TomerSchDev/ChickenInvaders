@@ -1,7 +1,7 @@
 from pygame import transform, key
 
 from Src.CONST import *
-from Src.utils import get_image, get_Movement, get_sound,play_music
+from Src.utils import get_image, get_Movement
 from Src.interfaces import i_Renderable, i_Detectable, i_MoveAble
 from Src.creatables.shots import abs_Shot
 
@@ -30,16 +30,25 @@ def player_move(x, y, speed, obj):
 class Player(i_Renderable, i_Detectable, i_MoveAble):
     def __init__(self, size):
         pos = (WIDTH // 2 - 50, HEIGHT - 150)
-        self._img = transform.rotate(transform.scale(get_image("player_ship"), size), 90)
+        self._img = transform.rotate(get_image("player_ship", size), 90)
         i_Renderable.__init__(self, self._img,
                               pos)
         i_MoveAble.__init__(self, player_move, 5, pos, size)
-        i_Detectable.__init__(self, pos, size, 3, abs_Shot)
+        i_Detectable.__init__(self, pos, size, 3, [abs_Shot], 0, self.empty)
         self.__width = self._img.get_width()
-        self.__shot = Shoot_Typs.FIVE_ANGE
+        self.__shot = Shoot_Typs.NORMAl
         self.__side = Direction.LEFT
         self._cooldown = 20
         self._last_shot = -1
+
+    def empty(self):
+        return None
+
+    def upgrade(self):
+        if self.__shot == Shoot_Typs.THREE_ANGLE:
+            self.__shot = Shoot_Typs.FIVE_ANGE
+        if self.__shot == Shoot_Typs.NORMAl:
+            self.__shot = Shoot_Typs.THREE_ANGLE
 
     def set_side(self, side):
         self.__side = side
@@ -47,8 +56,6 @@ class Player(i_Renderable, i_Detectable, i_MoveAble):
     def get_side(self):
         return self.__side
 
-    def upgrade(self, new_Shot):
-        pass
 
     def shoot(self, frame):
         if not self.can_shot(frame):

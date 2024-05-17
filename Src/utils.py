@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 def debug(message):
-    caller=inspect.stack()[1][3]
+    caller = inspect.stack()[1][3]
     logger.debug('%s : %s', caller, message)
 
 
@@ -25,9 +25,13 @@ def play_music(sound_file: pygame.mixer.Sound):
     sound_file.play()
 
 
-def get_image(image_name):
+def get_image(image_name, size):
     image_path: str = IMAGES_DIR + image_name + ".png"
-    return pygame.Surface.convert_alpha(pygame.image.load(image_path))
+    return pygame.transform.scale(pygame.Surface.convert_alpha(pygame.image.load(image_path)), size)
+
+
+def add_damage(d, target):
+    return target.add_damage(d.get_damage())
 
 
 def calculate_dis_to_endScreen(radios, center):
@@ -103,7 +107,7 @@ def created_rays_in_angle(rays_count, direction):
         print(r_angle)
         angle = math.radians(r_angle)
         rays.append(angle)
-    debug(f"created {rays}")
+    debug(f"created {[math.floor(math.degrees(angle)) for angle in rays]}")
     return rays
 
 
