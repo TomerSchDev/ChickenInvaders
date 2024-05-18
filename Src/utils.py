@@ -1,19 +1,13 @@
-import logging
-import inspect
 import pygame
-from Src.CONST import WIDTH, HEIGHT, Direction
+from Src.CONST import *
 from pygame import constants
+from Src.setting import get_setting
 import math
+from Src.logger import log
 
 IMAGES_DIR = "./Images/"
 SOUND_DIR = "./Sounds/"
 pygame.mixer.init()
-logger = logging.getLogger(__name__)
-
-
-def debug(message):
-    caller = inspect.stack()[1][3]
-    logger.debug('%s : %s', caller, message)
 
 
 def get_sound(sound_name):
@@ -22,7 +16,8 @@ def get_sound(sound_name):
 
 
 def play_music(sound_file: pygame.mixer.Sound):
-    sound_file.play()
+    if get_setting()[SettingOptions.Music]:
+        sound_file.play()
 
 
 def get_image(image_name, size):
@@ -100,14 +95,13 @@ def created_rays_in_angle(rays_count, direction):
             start_angle = i * 90 + 180
             break
     if start_angle == -1:
-        debug("unvalid angle")
+        log(LogLevels.ERROR, "invalid angle")
         return rays
     for i in range(1, rays_count + 1):
         r_angle = start_angle + diff_angle * i
-        print(r_angle)
         angle = math.radians(r_angle)
         rays.append(angle)
-    debug(f"created {[math.floor(math.degrees(angle)) for angle in rays]}")
+    log(LogLevels.INFO, f"created {[math.floor(math.degrees(angle)) for angle in rays]}")
     return rays
 
 

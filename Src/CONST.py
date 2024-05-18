@@ -1,9 +1,20 @@
 from enum import Enum
+import logging
 
 WIDTH = 1920
 HEIGHT = 1080
 
 FPS = 60
+
+
+class LogLevels(Enum):
+    INFO = logging.INFO
+    DEBUG = logging.debug
+    ERROR = logging.ERROR
+
+
+class SettingOptions(Enum):
+    Music = "Music"
 
 
 class Direction(Enum):

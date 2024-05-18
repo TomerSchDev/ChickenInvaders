@@ -1,0 +1,160 @@
+INFO : 24/05/18 11:02:38 PM : %s : %s create_object : F
+INFO : 24/05/18 11:02:38 PM : %s : %s create_object : F
+INFO : 24/05/18 11:02:39 PM : %s : %s create_object : F
+INFO : 24/05/18 11:02:39 PM : %s : %s create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:02:39 PM : %s : %s create_object : F
+INFO : 24/05/18 11:02:39 PM : %s : %s create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:02:39 PM : %s : %s create_object : F
+INFO : 24/05/18 11:02:39 PM : %s : %s create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:02:40 PM : %s : %s create_object : F
+INFO : 24/05/18 11:03:18 PM : %s : %s create_object : Factory got order for Player
+INFO : 24/05/18 11:03:18 PM : %s : %s create_object : Factory got order for Circle Chicken
+INFO : 24/05/18 11:03:19 PM : %s : %s create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:03:19 PM : %s : %s create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:03:20 PM : %s : %s create_object : Factory got order for Normal Egg
+INFO : 24/05/18 11:14:16 PM : create_object : Factory got order for Player
+INFO : 24/05/18 11:14:16 PM : create_object : Factory got order for Circle Chicken
+INFO : 24/05/18 11:14:17 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:14:17 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:14:17 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:14:17 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:14:17 PM : create_object : Factory got order for Normal Egg
+INFO : 24/05/18 11:14:49 PM : create_object : Factory got order for Player
+INFO : 24/05/18 11:14:49 PM : create_object : Factory got order for Circle Chicken
+INFO : 24/05/18 11:14:50 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:14:50 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:14:50 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:14:50 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:14:50 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:14:50 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:14:50 PM : create_object : Factory got order for Normal Egg
+INFO : 24/05/18 11:15:31 PM : create_object : Factory got order for Player
+INFO : 24/05/18 11:15:31 PM : create_object : Factory got order for Circle Chicken
+INFO : 24/05/18 11:15:31 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:15:31 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:15:31 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:15:31 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:15:32 PM : create_object : Factory got order for Normal Egg
+INFO : 24/05/18 11:15:32 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:15:32 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:15:32 PM : create_object : Factory got order for Upgrade
+INFO : 24/05/18 11:15:32 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:15:32 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:18:34 PM : create_object : Factory got order for Player
+INFO : 24/05/18 11:18:34 PM : create_object : Factory got order for Circle Chicken
+INFO : 24/05/18 11:18:35 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:18:35 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:18:35 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:18:35 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:18:35 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:18:35 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:18:35 PM : create_object : Factory got order for Normal Egg
+INFO : 24/05/18 11:18:36 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:18:36 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:18:36 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:18:36 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:18:36 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:18:36 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:18:37 PM : create_object : Factory got order for Normal Egg
+INFO : 24/05/18 11:18:37 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:18:37 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:18:37 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:18:37 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:18:37 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:18:37 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:18:38 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:18:38 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:18:38 PM : create_object : Factory got order for Upgrade
+INFO : 24/05/18 11:18:38 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:18:38 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:18:39 PM : create_object : Factory got order for Three Angles Shoot
+INFO : 24/05/18 11:19:45 PM : create_object : Factory got order for Player
+INFO : 24/05/18 11:19:45 PM : create_object : Factory got order for Circle Chicken
+INFO : 24/05/18 11:19:45 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:45 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:46 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:46 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:46 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:46 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:46 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:46 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:47 PM : create_object : Factory got order for Normal Egg
+INFO : 24/05/18 11:19:47 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:47 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:47 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:47 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:47 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:47 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:48 PM : create_object : Factory got order for Normal Egg
+INFO : 24/05/18 11:19:48 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:48 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:48 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:48 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:48 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:48 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:49 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:49 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:49 PM : create_object : Factory got order for Normal Egg
+INFO : 24/05/18 11:19:49 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:49 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:49 PM : create_object : Factory got order for Upgrade
+INFO : 24/05/18 11:19:49 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:49 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:50 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:50 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:50 PM : create_object : Factory got order for Normal Shoot
+INFO : 24/05/18 11:19:50 PM : create_object : creating object of type Normal Shoot with music
+INFO : 24/05/18 11:19:50 PM : create_object : Factory got order for Three Angles Shoot
+INFO : 24/05/18 11:19:50 PM : created_rays_in_angle : created [225, 270, 315]
+INFO : 24/05/18 11:19:50 PM : create_object : creating object of type Three_ Angle_ Shoot with len of size 3
+INFO : 24/05/18 11:19:50 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:50 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:50 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:50 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:50 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:50 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:51 PM : create_object : Factory got order for Three Angles Shoot
+INFO : 24/05/18 11:19:51 PM : created_rays_in_angle : created [225, 270, 315]
+INFO : 24/05/18 11:19:51 PM : create_object : creating object of type Three_ Angle_ Shoot with len of size 3
+INFO : 24/05/18 11:19:51 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:51 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:51 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:51 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:51 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:51 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:51 PM : create_object : Factory got order for Three Angles Shoot
+INFO : 24/05/18 11:19:51 PM : created_rays_in_angle : created [225, 270, 315]
+INFO : 24/05/18 11:19:51 PM : create_object : creating object of type Three_ Angle_ Shoot with len of size 3
+INFO : 24/05/18 11:19:51 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:51 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:51 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:51 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:51 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:51 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:51 PM : create_object : Factory got order for Three Angles Shoot
+INFO : 24/05/18 11:19:51 PM : created_rays_in_angle : created [225, 270, 315]
+INFO : 24/05/18 11:19:51 PM : create_object : creating object of type Three_ Angle_ Shoot with len of size 3
+INFO : 24/05/18 11:19:51 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:51 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:51 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:51 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:52 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:52 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:52 PM : create_object : Factory got order for Three Angles Shoot
+INFO : 24/05/18 11:19:52 PM : created_rays_in_angle : created [225, 270, 315]
+INFO : 24/05/18 11:19:52 PM : create_object : creating object of type Three_ Angle_ Shoot with len of size 3
+INFO : 24/05/18 11:19:52 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:52 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:52 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:52 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:52 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:52 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:53 PM : create_object : Factory got order for Three Angles Shoot
+INFO : 24/05/18 11:19:53 PM : created_rays_in_angle : created [225, 270, 315]
+INFO : 24/05/18 11:19:53 PM : create_object : creating object of type Three_ Angle_ Shoot with len of size 3
+INFO : 24/05/18 11:19:53 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:53 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:53 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:53 PM : create_object : creating object of type Angle_ Shoot with music
+INFO : 24/05/18 11:19:53 PM : create_object : Factory got order for Angles Shoot
+INFO : 24/05/18 11:19:53 PM : create_object : creating object of type Angle_ Shoot with music

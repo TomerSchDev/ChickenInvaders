@@ -6,7 +6,7 @@ from Src.CONST import *
 from pygame import Surface
 
 
-class abs_interface(ABC):
+class abs_interface:
     def __init__(self):
         if not hasattr(self, "_o_types"):
             self._o_types = []
@@ -123,6 +123,7 @@ class i_Damages(i_MoveAble):
         if self._direction == Direction.UP and x >= WIDTH - w:
             return True
         return False
+
     def get_direction(self):
         return self._direction
 

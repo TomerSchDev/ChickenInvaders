@@ -8,23 +8,25 @@ from Src.level import abs_Level
 __game = None
 
 
-def get_game():
+def get_game(setting):
     global __game
     if __game is None:
-        __game = __Game()
+        __game = __Game(setting)
     return __game
 
 
 class __Game:
 
-    def __init__(self):
+    def __init__(self, setting):
         self.window: pygame.Surface = pygame.display.set_mode((WIDTH, HEIGHT))
         self.background = get_image("background", (WIDTH, HEIGHT))
         self.window.blit(self.background, (0, 0))
         self.__game_objects = {obj: [] for obj in Objects_Type}
         self.player = None
         self.__lvl_loaded = False
-        pygame.mixer.init()
+        self.__setting = setting
+        if self.__setting[SettingOptions.Music]:
+            pygame.mixer.init()
 
     def init_level(self, lvl: abs_Level):
         self.player = create_object(self, PLAYER, (100, 100))

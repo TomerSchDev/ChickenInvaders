@@ -19,7 +19,6 @@ class abs_Shot(i_Renderable, i_Damages):
     def get_direction(self):
         return self._direction
 
-
 class NormalShoot(abs_Shot):
     __COOLDOWN = 20  # cool down of 20 frames between each frames
 
