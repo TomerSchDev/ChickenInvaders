@@ -5,7 +5,7 @@ import logging
 import re
 from Src.CONST import LogLevels
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(LogLevels.LOGGER.value)
 
 CLASS_NAME = "{INSERT_CLASS_HERE}"
 

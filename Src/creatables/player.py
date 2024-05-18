@@ -40,10 +40,9 @@ class Player(i_Renderable, i_Detectable, i_MoveAble):
         self.__side = Direction.LEFT
         self._cooldown = 20
         self._last_shot = -1
-
+        self.__name__="Player"
     def empty(self):
         return None
-
     def upgrade(self):
         if self.__shot == Shoot_Typs.THREE_ANGLE:
             self.__shot = Shoot_Typs.FIVE_ANGE

@@ -4,29 +4,28 @@ from Src.creatables.player import Player
 from Src.creatables.factory import create_object
 from Src.utils import get_image
 from Src.level import abs_Level
+from Src.setting import get_setting
 
 __game = None
 
 
-def get_game(setting):
+def get_game():
     global __game
     if __game is None:
-        __game = __Game(setting)
+        __game = __Game()
     return __game
 
 
 class __Game:
 
-    def __init__(self, setting):
+    def __init__(self, ):
         self.window: pygame.Surface = pygame.display.set_mode((WIDTH, HEIGHT))
         self.background = get_image("background", (WIDTH, HEIGHT))
         self.window.blit(self.background, (0, 0))
         self.__game_objects = {obj: [] for obj in Objects_Type}
         self.player = None
         self.__lvl_loaded = False
-        self.__setting = setting
-        if self.__setting[SettingOptions.Music]:
-            pygame.mixer.init()
+        self.__setting = get_setting()
 
     def init_level(self, lvl: abs_Level):
         self.player = create_object(self, PLAYER, (100, 100))

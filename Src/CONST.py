@@ -8,8 +8,10 @@ FPS = 60
 
 
 class LogLevels(Enum):
+    LOGGER = "Chicken_LOGGER"
     INFO = logging.INFO
-    DEBUG = logging.debug
+    DEBUG = logging.DEBUG
+    WARNING=logging.WARNING
     ERROR = logging.ERROR
 
 

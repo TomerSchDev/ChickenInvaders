@@ -1,7 +1,6 @@
-from abc import ABC
 from typing import Optional
 import random
-
+from Src.logger import log,CLASS_NAME
 from Src.CONST import *
 from pygame import Surface
 
@@ -152,6 +151,7 @@ class i_Detectable(abs_interface):
 
     def add_damage(self, damage):
         self._hp -= damage
+        log(LogLevels.DEBUG, (self, f"{CLASS_NAME} got hit with {damage} damage, hp left = {self._hp}"))
         if self._hp <= 0:
             chance = random.randint(0, 100)
             if chance <= self._drop_rate:
