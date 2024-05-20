@@ -2,8 +2,8 @@ import sys
 from Src.CONST import LogLevels
 from Src.setting import get_setting
 from Src.game import get_game
-from Src.level import tmp_lvl
-from Src.CONST import SettingOptions
+from Src.level import *
+from Src.CONST import SettingOptions,LOGGER
 import logging
 
 
@@ -14,8 +14,7 @@ def init_program():
         setting[SettingOptions.Music] = False
     else:
         setting[SettingOptions.Music] = True
-    logger = logging.getLogger(LogLevels.LOGGER.value)
-    # Create file handlers for different log levels
+    logger = logging.getLogger(LOGGER)  # Create file handlers for different log levels
     debug_handler = logging.FileHandler('game_debug.log')
     debug_handler.setLevel(logging.DEBUG)
 
@@ -42,11 +41,17 @@ def init_program():
     logger.addHandler(info_handler)
     logger.addHandler(warning_handler)
     logger.addHandler(error_handler)
+    levels=[]
+    if "-e" in args:
+        levels.append(Endless_lvl(1))
+    else:
+        levels.append(Test_level_circle())
+    return levels
+
 
 def main():
-    init_program()
-    g = get_game()
-    g.init_level(tmp_lvl())
+    lvls=init_program()
+    g = get_game(lvls)
     g.start()
 
 

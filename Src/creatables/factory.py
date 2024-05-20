@@ -22,7 +22,6 @@ objects_dic = {
     Shoot_Typs.ANGLE: (Angle_Shoot, get_sound("lazer_shot")),
     Shoot_Typs.THREE_ANGLE: [Three_Angle_Shoot],
     Shoot_Typs.FIVE_ANGE: [Five_Angle_Shoot]
-
 }
 
 

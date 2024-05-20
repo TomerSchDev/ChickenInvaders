@@ -3,9 +3,9 @@ from __future__ import annotations
 import inspect
 import logging
 import re
-from Src.CONST import LogLevels
+from Src.CONST import LogLevels,LOGGER
 
-logger = logging.getLogger(LogLevels.LOGGER.value)
+logger = logging.getLogger(LOGGER)
 
 CLASS_NAME = "{INSERT_CLASS_HERE}"
 
@@ -17,9 +17,9 @@ def replace_message(message: str, insert: str):
     return message[:index] + insert + " " + message[index + len_insert + 1:]
 
 
-def __write_log(lvl: LogLevels, message: str):
+def __write_log(lvl, message: str):
     caller = inspect.stack()[2][3]
-    logger.log(lvl.value, caller + " : " + message)
+    lvl(caller+":"+message)
 
 
 def __get_message(message :str|tuple):
@@ -35,6 +35,6 @@ def log(lvl: LogLevels, message):
 
 
 def debug_class(cls, message: str) -> str:
-    cls_name: str = cls.__name__
+    cls_name: str = str(cls).split(".")[-1]
     cls_name_parte = re.sub(r'(?<!^)(?=[A-Z])', ' ', cls_name)
     return replace_message(message, cls_name_parte)

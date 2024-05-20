@@ -6,13 +6,14 @@ HEIGHT = 1080
 
 FPS = 60
 
-
+LOGGER = "Chicken_LOGGER"
+_logger:logging.Logger = logging.getLogger(LOGGER)
 class LogLevels(Enum):
-    LOGGER = "Chicken_LOGGER"
-    INFO = logging.INFO
-    DEBUG = logging.DEBUG
-    WARNING=logging.WARNING
-    ERROR = logging.ERROR
+
+    INFO = _logger.info
+    DEBUG = _logger.debug
+    WARNING=_logger.warning
+    ERROR = _logger.error
 
 
 class SettingOptions(Enum):
@@ -41,7 +42,7 @@ UPGRADE = "Upgrade"
 class Enemy_Typs(Enum):
     def __str__(self):
         return self.value + " Chicken"
-
+    BASE = "Base"
     NORMAL = "Normal"
     CIRCLE = "Circle"
 

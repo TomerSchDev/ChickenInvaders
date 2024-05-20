@@ -1,6 +1,6 @@
 from abc import ABC
 import random
-from Src.CONST import WIDTH, HEIGHT,Enemy_Typs
+from Src.CONST import WIDTH, HEIGHT, Enemy_Typs
 
 
 class Chicken_Info:
@@ -13,8 +13,11 @@ class Chicken_Info:
 
 
 class abs_Level(ABC):
-    def __init__(self, chickens: list[Chicken_Info]):
+    def __init__(self, chickens: list[Chicken_Info],is_endless):
+        self.__endless=is_endless
         self.chickens_info = chickens
+    def is_endless(self):
+        return self.__endless
 
 
 def create_chickens_demo(count) -> list[Chicken_Info]:
@@ -27,13 +30,21 @@ def create_chickens_demo(count) -> list[Chicken_Info]:
     return res
 
 
-class test_level_circle(abs_Level):
+class Test_level_circle(abs_Level):
     def __init__(self):
         chickens: list[Chicken_Info] = [Chicken_Info(Enemy_Typs.CIRCLE, (500, 400))]
-        super().__init__(chickens)
+        super().__init__(chickens,False)
 
 
-class tmp_lvl(abs_Level):
+class Tmp_lvl(abs_Level):
     def __init__(self):
         chickens = create_chickens_demo(1)
-        super().__init__(chickens)
+        super().__init__(chickens,False)
+
+
+class Endless_lvl(abs_Level):
+    def __init__(self, lvl):
+        self.index = lvl
+        super().__init__(create_chickens_demo(lvl),True)
+
+
