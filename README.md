@@ -1,4 +1,4 @@
-# Chicken-Invaders-Clone
+# Chicken-Invaders
 
 A Python-based clone of the classic arcade game Chicken Invaders. Defend Earth from waves of intergalactic chickens!
 
